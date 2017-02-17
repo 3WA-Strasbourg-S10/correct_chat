@@ -1,0 +1,13 @@
+<div class="row message">
+	<div class="col-sm-1">
+		<img class="img-responsive user-photo" src="<?=$message['avatar']?>">
+	</div>
+	<div class="col-sm-2">
+		<strong><?=$message['author']?></strong>
+		<br/>
+		<span class="text-muted"><?=$message['date']?></span>
+	</div>
+	<div class="col-sm-9 msg_content">
+		<?=$message['content']?>
+	</div>
+</div>
