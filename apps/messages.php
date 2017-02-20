@@ -25,8 +25,9 @@ $list = array_filter($list, function($msg)
     return true;
 });
 $list = array_values($list);
+$max = 20;
 $i = 0;
-while ($i < count($list))
+while ($i < count($list) && $i < $max)
 {
 	$message = $list[$i];
 	if (filter_var($message['avatar'], FILTER_VALIDATE_URL) == false)

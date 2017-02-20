@@ -1,9 +1,33 @@
 <h1>Tchat</h1>
-<div>
-	<?php require('apps/create.php'); ?>
-</div>
-<div class="msg_list">
-	<?php require('apps/messages.php'); ?>
+<div class="row">
+	<div class="col-md-8">
+		<?php require('apps/create.php'); ?>
+		<div class="msg_list">
+			<?php require('apps/messages.php'); ?>
+		</div>
+	</div>
+	<div class="user_list col-md-4">
+		<?php require('apps/users.php'); ?>
+	</div>
 </div>
 <script>
+$('form').submit((info)=>
+{
+	info.preventDefault();
+	$.post('index.php?page=messages&ajax', {content:$('form input').val()}, (data)=>
+	{
+		$('form input').val('');
+		var err = $(data).find('.errors').text();
+		if (err)
+		{
+			alert(err);
+		}
+	});
+	return false;
+});
+setInterval(()=>
+{
+	$('.msg_list').load('index.php?page=messages&ajax');
+	$('.user_list').load('index.php?page=users&ajax');
+}, 500);
 </script>

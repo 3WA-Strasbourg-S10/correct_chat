@@ -1,4 +1,19 @@
 <?php
+if (isset($_SESSION['id']))
+{
+	$res1 = mysqli_query($db['chat_project'], "UPDATE users SET status=CURRENT_TIMESTAMP WHERE id='".$_SESSION['id'][0]."'");
+	$res2 = mysqli_query($db['chantage'], "UPDATE users SET last=CURRENT_TIMESTAMP WHERE id='".$_SESSION['id'][1]."'");
+	$res3 = mysqli_query($db['Chat_coffee'], "UPDATE users SET last=CURRENT_TIMESTAMP WHERE id='".$_SESSION['id'][2]."'");
+	$res4 = mysqli_query($db['chat-ouille'], "UPDATE users SET last_act=CURRENT_TIMESTAMP WHERE id='".$_SESSION['id'][3]."'");
+	if ($res1 !== true)
+		$errors[] = "chat_project > ".mysqli_error($db['chat_project']);
+	if ($res2 !== true)
+		$errors[] = "chantage > ".mysqli_error($db['chantage']);
+	if ($res3 !== true)
+		$errors[] = "Chat_coffee > ".mysqli_error($db['Chat_coffee']);
+	if ($res4 !== true)
+		$errors[] = "chat-ouille > ".mysqli_error($db['chat-ouille']);
+}
 if (isset($_GET['page']) && $_GET['page'] == "logout")
 {
 	session_destroy();

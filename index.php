@@ -7,7 +7,7 @@ $db = [
 	"chat-ouille"=>mysqli_connect("192.168.1.79","chat-ouille","chat-ouille","chat-ouille")
 ];
 session_start();
-$access = ["login", "register", "tchat", "messages"];
+$access = ["login", "register", "tchat", "messages", "users"];
 $page = "login";
 if (isset($_GET['page']) && in_array($_GET['page'], $access))
 {
